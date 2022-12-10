@@ -1,0 +1,19 @@
+[package]
+name = "Network_src"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+lazy_static = "*"#:惰性初始>
+anyhow = "*"#:Result兼容处理>
+rayon = "*"#:并行>
+ssh-rs = "*"#:ssh>
+Install_src = { path = "../LinuxService/src/Install_src" }
+LinuxService = { path = "../LinuxService" }
+hashbrown = { version = "*", features = ["serde", "ahash", "rayon"] }#:|哈希(性能)>
+jsonrpsee = { version = "*", features = ["full"] }#:GRC>
+jsonrpsee-core = { version = "*", features = ["async-channel", "tokio", "futures-util", "server", "parking_lot", "async-client", "client"] }#:GRC通信>
+[lib]#[高可用库]
+path = "./src/main.rs"

@@ -1,0 +1,151 @@
+[package]
+name = "Titans"
+version = "0.1.0"
+edition = "2021"
+authors = ["SAY683@protonmail.com", "3347212843@qq.com"]
+license = "MIT OR Apache-2.0"
+description = "Distributed storage database"
+keywords = ["mysql", "redis", "database","virtual_file_system","distributed"]
+categories = ["command-line-utilities"]
+readme = "README.md"
+homepage = "https://github.com/SAY683/Titans.github.io.git"
+repository = "https://github.com/SAY683/Titans.github.io.git"
+[badges]
+maintenance = { status = "InTheOptimization" }
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[dependencies]
+#async<+>async<+>async<+>async<+>async<+>async<+>async<+>async<+>async<+>
+tokio = { version = "*", features = ["full"] }#:全域执行async/await>
+futures = "*"#:区域执行async/await>
+async-trait = "*"#:async-trait>
+async-channel = "*"#:线程通信>
+async-stream = "*"#:异步迭代>
+#async<+>async<+>async<+>async<+>async<+>async<+>async<+>async<+>async<+>
+
+#database<+>database<+>database<+>database<+>database<+>database<+>database<+>
+#chrono = "*"#:Mysql|时间>
+rbatis = { version = "*", features = ["rbatis-macro-driver"] }#:ORM(A)Mysql>
+rbdc = "*"#:ORM(B)Mysql>
+rbdc-mysql = "*"#:ORM(C)Mysql>
+rbs = "*"#ORM(D)Mysql>
+#mysql_async = "*"#:Mysql语句执行>
+#rayon = "*"#:微型本地数据库>
+deadpool-redis = { version = "*", features = ["serde"] }#:Redis链接>
+#sea-orm = { version = "*", features = ["runtime-tokio", "uuid"] }#:ORM>
+#database<+>database<+>database<+>database<+>database<+>database<+>database<+>
+
+#serialization<+>serialization<+>serialization<+>serialization<+>serialization<+>
+serde = { version = "*", features = ["derive"] }#:数据序列>
+serde_json = "*"#:json序列>
+#bincode = "*"#:结构编码>
+#data-encoding = "*"#:数据编码>
+#combine = "*"#:数据解析>
+#bytes = { version = "*", features = ["serde"] }#:|字节处理>
+#quick-xml = { version = "*", features = ["serde", "async-tokio", "serialize"] }#:配置文件>
+#csv = "*"#:csv解析>
+#serialization<+>serialization<+>serialization<+>serialization<+>serialization<+>
+
+#thread<+>thread<+>thread<+>thread<+>thread<+>thread<+>thread<+>thread<+>thread<+>
+#kanal = "0.1.0-pre7"#:线程通信Bata>
+#thread_local = "*"#:线程通信副本>
+#async-backtrace = "*"#:异步线程记录>
+#thread<+>thread<+>thread<+>thread<+>thread<+>thread<+>thread<+>thread<+>thread<+>
+
+#dataInitial<+>dataInitial<+>dataInitial<+>dataInitial<+>dataInitial<+>dataInitial<+>
+lazy_static = "*"#:惰性初始>
+once_cell = "*"#:|Cell模式全局数据>
+#stretto = { version = "*", features = ["full"] }#:缓存>
+arc-swap = "*"#:原子锁>
+#dataInitial<+>dataInitial<+>dataInitial<+>dataInitial<+>dataInitial<+>dataInitial<+>
+
+#dataOptimization<+>dataOptimization<+>dataOptimization<+>dataOptimization<+>dataOptimization<+>
+hashbrown = { version = "*", features = ["serde", "ahash", "rayon"] }#:|哈希(性能)>
+#spin = "*"#:|自旋锁>
+parking_lot = { version = "*", feature = ["const_fair_mutex", "const_mutex", "const_reentrant_mutex", "const_rwlock"] }#:数据锁>
+#compact_str = "*"#:String优化版>
+#bincode = "*"#:编码转译>
+#rayon = "*"#:并行>
+#dataOptimization<+>dataOptimization<+>dataOptimization<+>dataOptimization<+>dataOptimization<+>
+
+#eventHandling<+>eventHandling<+>eventHandling<+>eventHandling<+>eventHandling<+>eventHandling<+>
+#num-bigint = { version = "*", features = ["rand"] }#:大随机(rand=0.8可兼容)>
+anyhow = "*"#:Result兼容处理>
+thiserror = "*"#:错误指定>
+#walkdir = "*"#:文件查询>
+fast_log = "*"#:log(B)>
+ftlog = "*"#log(C)>
+#opener = "*"#:默认开启>
+#whoami = "*"#:环境ID>
+#dotenv = "*"#:环境解析>
+#sha256 = "*"#:文件hash>
+comfy-table = "*"#:Shll界面>
+#clap = "*"#:Shll命令解析>
+#eventHandling<+>eventHandling<+>eventHandling<+>eventHandling<+>eventHandling<+>eventHandling<+>
+
+#network<+>network<+>network<+>network<+>network<+>network<+>network<+>network<+>network<+>
+#uuid = "*"#:ID
+#http = "*"#:请求处理>
+#reqwest = { version = "*", features = ["json", "socks", "stream", "blocking"] }#:http处理[单线程阻塞]>
+#s2n-quic = { version = "*", features = ["hash_hasher"] }#QUIC>
+#network<+>network<+>network<+>network<+>network<+>network<+>network<+>network<+>network<+>
+#NativeLibrary<+>NativeLibrary<+>NativeLibrary<+>NativeLibrary<+>NativeLibrary<+>NativeLibrary<+>
+Install_src = { path = "src/LinuxService/src/Install_src" }
+Gui_src = { path = "src/LinuxService/src/Gui_src" }
+Network_src = { path = "./src/Network_src" }
+#NativeLibrary<+>NativeLibrary<+>NativeLibrary<+>NativeLibrary<+>NativeLibrary<+>NativeLibrary<+>
+[workspace]#[集中构建]
+members = ["src/LinuxService/src/Install_src", "src/LinuxService/src/Gui_src", "src/Network_src", "src/LinuxService"]
+[build-dependencies]#:[构建包]
+#cc = { version = "*", features = ["parallel"] }
+#slint-build = "*"
+#[lib]#[高可用库]
+#path = "./src/main.rs"
+[profile.dev]#[Debug]
+codegen-units = 64
+[profile.release]#[Release]
+opt-level = 3
+codegen-units = 1
+strip = true
+lto = true
+[profile.release.build-override]
+opt-level = 3
+codegen-units = 1
+strip = true
+#[source.ustc]
+#registry = "git://mirrors.ustc.edu.cn/crates.io-index"
+#源配置
+#演示
+#[[example]]
+#name = "Nebula"
+#path = "src/main.rs"
+#++++++++++++++++++|++++++++++++|
+#cargo new {%HOME%}|创建项目[bin]
+#++++++++++++++++++|+++++|+++++++++++|
+#cargo new --lib {%HOME%}|创建项目[lib]
+#++++++++++++++++|+++++++|+++++++++++|
+#cargo doc --open|文档生成
+#+++++++++++|++++|+++++++|++++++++++++++++++|+++++++++++++++++++++++++|
+#cargo test & cargo test -- --test-threads=1|测试 [test]测试,[ignore]忽略
+#++++++++++++++++++++++++++++++++++++|++++++|++++|++++++++++++++++++++|
+#cargo build & cargo build --release |构建
+#+++++++++++++++++++++|++++++++++++++|++++++|
+#cargo install --path |下载
+#++++++++++++|++++++++|+++|
+#cargo check |检查
+#++++++++++++|+|+++|
+#rustup update |cargo update|更新
+#++++++++++++++|+++++++++++++++++++|+++++++++|
+#rustup default stable/nightly/beta|默认版本切换
+#++++++++++++++++++++++|+++++++++++|
+#rustup toolchain list |模式查看
+#+++++++++++++++|++++++|
+#rustc --version|查看版本
+#+++++++++++++++|++|++++++++++++++++++++++++++++++++++++++++++++++++++++++|
+#cargo install crm |源更换 crm best[自动更换],crm publish官方源执行cargo publish
+#+++++++++++++++|++|+++++++|++++++++++++++++++++++++++++++++++++++++++++++|
+#rustup component add miri |测试代码 cargo miri[使用],cargo miri test[测试]
+#++++++++++++++++++++++++++|+|+++++++++++++++++++++++++++++++++++++++++|
+#$ cargo install cargo-audit |安全测试 cargo audit
+#+++++++++++++|+++++++++++++++++++++++|+++++++
+# cargo clean | cargo clean -p {name} |缓存清理
+#++++++++++++++++++++++++++|++++++++++++++++++++++++--do
