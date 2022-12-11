@@ -1,5 +1,7 @@
 use std::net::{TcpStream};
+use std::path::{Path};
 use hashbrown::HashMap;
+use jsonrpsee::tracing::info;
 use ssh_rs::{LocalSession, SessionBroker};
 use ssh_rs::ssh::create_session;
 use Install_src::element::Node;
@@ -13,6 +15,8 @@ pub trait SshSc {
 	fn shell<'life>(&self, _: Vec<&'life str>) -> anyhow::Result<HashMap<&'life str, String>>;
 	///#单次单线程shell
 	fn shell_one(&self, _: &str) -> anyhow::Result<String>;
+	///scp 多线程
+	fn scp(&self, _: &Path, _: &Path, _: bool) -> anyhow::Result<()>;
 }
 
 impl SshSc for Node {
@@ -68,5 +72,22 @@ impl SshSc for Node {
 		let rt = String::from_utf8(r.send_command(rc)?)?;
 		x.close();
 		Ok(rt)
+	}
+	fn scp(&self, r: &Path, j: &Path, t: bool) -> anyhow::Result<()> {
+		let mut z = self.get_shh()?;
+		let mut g = z.open_scp()?;
+		match t {
+			true => {
+				g.upload(r, j)?;
+				info!("{r:?}--Download->{j:?}");
+			}
+			false => {
+				g.start_download(r, j)?;
+				info!("{j:?}--Download->{r:?}");
+				g.end_download()?;
+			}
+		};
+		z.close();
+		Ok(())
 	}
 }

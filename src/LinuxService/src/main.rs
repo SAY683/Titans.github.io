@@ -10,7 +10,7 @@ use Install_src::{Install, InstallSrc};
 use crate::construct::build;
 
 #[main]
-//#[cfg(target_os = "linux")]
+//#[cfg(target_os = "TitansService")]
 async fn main() -> anyhow::Result<()> {
 	build().await?;
 	Ok(())

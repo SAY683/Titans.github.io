@@ -50,6 +50,8 @@ pub mod element {
 	pub struct Logs {
 		///路径
 		pub path: PathBuf,
+		///节点logs
+		pub node_logs: PathBuf,
 		///开启
 		pub enabled: bool,
 		///过期日期
@@ -62,6 +64,8 @@ pub mod element {
 		pub host: String,
 		///集群开启
 		pub cluster_enabled: bool,
+		///发送构建
+		pub scp_build: bool,
 	}
 	
 	#[derive(Debug, Serialize, Deserialize)]
@@ -84,6 +88,8 @@ pub mod element {
 		pub local_data: PathBuf,
 		///节点数据
 		pub node_data: PathBuf,
+		///节点服务文件
+		pub node_service_path: PathBuf,
 	}
 }
 

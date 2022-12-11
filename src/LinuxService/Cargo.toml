@@ -8,7 +8,8 @@ edition = "2021"
 [dependencies]
 tokio = { version = "*", features = ["full"] }#:全域执行async/await>
 futures = "*"#:区域执行async/await>
-async-stream = "*"#:异步迭代>
+#async-stream = "*"#:异步迭代>
+async-trait = "*"#:async-trait>
 anyhow = "*"#:Result兼容处理>
 jsonrpsee = { version = "*", features = ["full"] }#:GRC>
 jsonrpsee-core = { version = "*", features = ["async-channel", "tokio", "futures-util", "server", "parking_lot", "async-client", "client"] }#:GRC通信>
@@ -17,5 +18,19 @@ once_cell = "*"#:|Cell模式全局数据>
 arc-swap = "*"#:原子锁>
 Gui_src = { path = "./src/Gui_src" }
 Install_src = { path = "./src/Install_src" }
+serde = { version = "*", features = ["derive"] }#:数据序列>
+serde_json = "*"#:json序列>
+bincode = "*"#:结构编码>
 [lib]#[高可用库]
 path = "./src/main.rs"
+[profile.dev]#[Debug]
+codegen-units = 64
+[profile.release]#[Release]
+opt-level = 3
+codegen-units = 1
+strip = true
+lto = true
+[profile.release.build-override]
+opt-level = 3
+codegen-units = 1
+strip = true

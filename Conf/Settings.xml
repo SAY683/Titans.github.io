@@ -3,18 +3,22 @@
     <data>
         <storage>
             <local_data>./Data</local_data>
-            <node_data>~/TitansData</node_data>
+            <node_data>~/TitansService</node_data>
+            <node_service_path>~/TitansService/Conf/Start_Titans.sh</node_service_path>
         </storage>
         <logs>
             <path>./Tmp/Logs/Titans.log</path>
+            <node_logs>~/TitansData/Titans.out</node_logs>
             <enabled>true</enabled>
             <expiration_day>7</expiration_day>
         </logs>
     </data>
     <drive>
         <master>
-            <host>127.0.0.1:8964</host>
+            <host>192.168.198.87:8964</host>
             <cluster_enabled>true</cluster_enabled>
+            ///仅发送文件 权限请自行处理!
+            <scp_build>true</scp_build>
         </master>
         <node>
             <node_name>slave1</node_name>
@@ -26,6 +30,13 @@
         <node>
             <node_name>slave2</node_name>
             <host>192.168.242.130:22</host>
+            <ssh_user>root</ssh_user>
+            <ssh_password>683683say</ssh_password>
+            <ssh_private_key_path/>
+        </node>
+        <node>
+            <node_name>slave3</node_name>
+            <host>192.168.242.128:22</host>
             <ssh_user>root</ssh_user>
             <ssh_password>683683say</ssh_password>
             <ssh_private_key_path/>
