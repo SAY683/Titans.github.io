@@ -7,6 +7,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/LinuxService/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/LinuxService/src/Gui_src/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/LinuxService/src/Install_src/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/Magnificent/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />

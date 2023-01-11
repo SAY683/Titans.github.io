@@ -5,7 +5,7 @@ edition = "2021"
 authors = ["SAY683@protonmail.com", "3347212843@qq.com"]
 license = "MIT OR Apache-2.0"
 description = "Distributed storage database"
-keywords = ["mysql", "redis", "database","virtual_file_system","distributed"]
+keywords = ["mysql", "redis", "database", "virtual_file_system", "distributed"]
 categories = ["command-line-utilities"]
 readme = "README.md"
 homepage = "https://github.com/SAY683/Titans.github.io.git"
@@ -29,7 +29,6 @@ rbdc = "*"#:ORM(B)Mysql>
 rbdc-mysql = "*"#:ORM(C)Mysql>
 rbs = "*"#ORM(D)Mysql>
 #mysql_async = "*"#:Mysql语句执行>
-#rayon = "*"#:微型本地数据库>
 deadpool-redis = { version = "*", features = ["serde"] }#:Redis链接>
 #sea-orm = { version = "*", features = ["runtime-tokio", "uuid"] }#:ORM>
 #database<+>database<+>database<+>database<+>database<+>database<+>database<+>
@@ -43,6 +42,8 @@ serde_json = "*"#:json序列>
 #bytes = { version = "*", features = ["serde"] }#:|字节处理>
 #quick-xml = { version = "*", features = ["serde", "async-tokio", "serialize"] }#:配置文件>
 #csv = "*"#:csv解析>
+#rust_decimal="*"#:小数>
+itertools = "*"#:迭代器>
 #serialization<+>serialization<+>serialization<+>serialization<+>serialization<+>
 
 #thread<+>thread<+>thread<+>thread<+>thread<+>thread<+>thread<+>thread<+>thread<+>
@@ -56,6 +57,7 @@ lazy_static = "*"#:惰性初始>
 once_cell = "*"#:|Cell模式全局数据>
 #stretto = { version = "*", features = ["full"] }#:缓存>
 arc-swap = "*"#:原子锁>
+sync_cow = "*"#:读写克隆>
 #dataInitial<+>dataInitial<+>dataInitial<+>dataInitial<+>dataInitial<+>dataInitial<+>
 
 #dataOptimization<+>dataOptimization<+>dataOptimization<+>dataOptimization<+>dataOptimization<+>
@@ -64,11 +66,15 @@ hashbrown = { version = "*", features = ["serde", "ahash", "rayon"] }#:|哈希(�
 parking_lot = { version = "*", feature = ["const_fair_mutex", "const_mutex", "const_reentrant_mutex", "const_rwlock"] }#:数据锁>
 #compact_str = "*"#:String优化版>
 #bincode = "*"#:编码转译>
+#tokio-util="*"#编码器:>
 #rayon = "*"#:并行>
+#bytes = "*"#:编码>
+#dataloader = "*"#:缓存>
 #dataOptimization<+>dataOptimization<+>dataOptimization<+>dataOptimization<+>dataOptimization<+>
 
 #eventHandling<+>eventHandling<+>eventHandling<+>eventHandling<+>eventHandling<+>eventHandling<+>
 #num-bigint = { version = "*", features = ["rand"] }#:大随机(rand=0.8可兼容)>
+#async-graphql = { version = "*", features = ["tokio", "url", "uuid", "cbor", "hashbrown", "bson"] }#:请求机>
 anyhow = "*"#:Result兼容处理>
 thiserror = "*"#:错误指定>
 #walkdir = "*"#:文件查询>
@@ -88,13 +94,28 @@ comfy-table = "*"#:Shll界面>
 #reqwest = { version = "*", features = ["json", "socks", "stream", "blocking"] }#:http处理[单线程阻塞]>
 #s2n-quic = { version = "*", features = ["hash_hasher"] }#QUIC>
 #network<+>network<+>network<+>network<+>network<+>network<+>network<+>network<+>network<+>
+
+#Web<+>Web<+>Web<+>Web<+>Web<+>Web<+>Web<+>Web<+>Web<+>Web<+>Web<+>Web<+>Web<+>Web<+>Web<+>
+#scraper = "*"#:Css解析>
+#lettre = "*"#:邮件传输A>
+#lettre_email = "*"#<:邮件传输B>
+#actix-cors = "*"#:WebA>
+#actix-web = "*"#:WebB>
+#actix-rt = "*"#:WebC>
+#tower = { version = "*", features = ["full"] }#Web构建>
+#jsonwebtoken = "*"#:json验证>
+#warp = {version = "*", features = ["websocket","tokio-tungstenite"]}#:https构建
+#Web<+>Web<+>Web<+>Web<+>Web<+>Web<+>Web<+>Web<+>Web<+>Web<+>Web<+>Web<+>Web<+>Web<+>Web<+>
+
 #NativeLibrary<+>NativeLibrary<+>NativeLibrary<+>NativeLibrary<+>NativeLibrary<+>NativeLibrary<+>
 Install_src = { path = "src/LinuxService/src/Install_src" }
 Gui_src = { path = "src/LinuxService/src/Gui_src" }
 Network_src = { path = "./src/Network_src" }
+LinuxService = { path = "./src/LinuxService" }
+Magnificent = { path = "./src/Magnificent" }
 #NativeLibrary<+>NativeLibrary<+>NativeLibrary<+>NativeLibrary<+>NativeLibrary<+>NativeLibrary<+>
 [workspace]#[集中构建]
-members = ["src/LinuxService/src/Install_src", "src/LinuxService/src/Gui_src", "src/Network_src", "src/LinuxService"]
+members = ["src/LinuxService/src/Install_src", "src/LinuxService/src/Gui_src", "src/Network_src", "src/LinuxService", "./src/Magnificent"]
 [build-dependencies]#:[构建包]
 #cc = { version = "*", features = ["parallel"] }
 #slint-build = "*"
@@ -114,6 +135,8 @@ strip = true
 #[source.ustc]
 #registry = "git://mirrors.ustc.edu.cn/crates.io-index"
 #源配置
+# #[tokio::main(flavor = "multi_thread")]// 等价于#[%{HOME}::main]
+# #[%{HOME}::main(flavor = "current_thread")]//基本調度程序是單線程的
 #演示
 #[[example]]
 #name = "Nebula"

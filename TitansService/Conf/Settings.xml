@@ -2,22 +2,27 @@
 <Titans>
     <data>
         <storage>
+            ///master节点存储位置
             <local_data>./Data</local_data>
+            ///节点存储位置
             <node_data>~/TitansService</node_data>
+            ///节点开始脚本
             <node_service_path>~/TitansService/Conf/Start_Titans.sh</node_service_path>
         </storage>
         <logs>
             <path>./Tmp/Logs/Titans.log</path>
             <node_logs>~/TitansData/Titans.out</node_logs>
             <enabled>true</enabled>
+            ///日志缓存日期
             <expiration_day>7</expiration_day>
         </logs>
     </data>
     <drive>
         <master>
+            ///master端口通信
             <host>192.168.198.87:8964</host>
             <cluster_enabled>true</cluster_enabled>
-            ///仅发送文件 权限请自行处理!
+            ///不稳定
             <scp_build>true</scp_build>
         </master>
         <node>
@@ -25,6 +30,7 @@
             <host>192.168.242.129:22</host>
             <ssh_user>root</ssh_user>
             <ssh_password>683683say</ssh_password>
+            ///ssh_private_key_path 完善中
             <ssh_private_key_path/>
         </node>
         <node>

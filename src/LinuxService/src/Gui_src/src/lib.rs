@@ -33,7 +33,7 @@ pub struct Information2<'life> {
 	///列表
 	pub list: Vec<&'life str>,
 	///数据
-	pub data: Vec<Vec<&'life str>>,
+	pub data: Vec<Vec<String>>,
 }
 
 ///#显示
@@ -106,17 +106,23 @@ pub trait View {
 			)
 		})
 	}
-}
-
-impl View for Colour {
-	fn table<const GC: usize, const FG: usize>(&self, e: Information<GC, FG>) -> Table {
-		let i = Colour::view(self);
+	fn table2(&self, _: Information2) -> Table;
+	///默认
+	fn table_default() -> Table {
 		let mut table = Table::new();
 		table
 			.load_preset(UTF8_FULL)
 			.apply_modifier(UTF8_ROUND_CORNERS)
 			.set_content_arrangement(ContentArrangement::DynamicFullWidth)
 			.set_width(40);
+		table
+	}
+}
+
+impl View for Colour {
+	fn table<const GC: usize, const FG: usize>(&self, e: Information<GC, FG>) -> Table {
+		let i = Colour::view(self);
+		let mut table = Colour::table_default();
 		table.set_header(
 			e.list
 				.map(|x| Cell::new(x).add_attribute(i.text).fg(i.frames))
@@ -126,6 +132,20 @@ impl View for Colour {
 		e.data.into_iter().for_each(|x| {
 			table.add_row(
 				x.map(|x| Cell::new(x).add_attribute(i.text).fg(i.frames))
+					.into_iter()
+					.collect::<Vec<_>>(),
+			);
+		});
+		table
+	}
+	
+	fn table2(&self, e: Information2) -> Table {
+		let i = Colour::view(self);
+		let mut table = Colour::table_default();
+		table.set_header(e.list.into_iter().map(|x| { Cell::new(x).add_attribute(i.text).fg(i.frames) }).collect::<Vec<_>>());
+		e.data.into_iter().for_each(|x| {
+			table.add_row(
+				x.into_iter().map(|x| Cell::new(x).add_attribute(i.text).fg(i.frames))
 					.into_iter()
 					.collect::<Vec<_>>(),
 			);

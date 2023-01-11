@@ -1,9 +1,9 @@
 use std::net::{TcpStream};
 use std::path::{Path};
 use hashbrown::HashMap;
-use jsonrpsee::tracing::info;
 use ssh_rs::{LocalSession, SessionBroker};
 use ssh_rs::ssh::create_session;
+use Gui_src::{Colour};
 use Install_src::element::Node;
 
 pub trait SshSc {
@@ -79,11 +79,11 @@ impl SshSc for Node {
 		match t {
 			true => {
 				g.upload(r, j)?;
-				info!("{r:?}--Download->{j:?}");
+				Colour::Output.logs_is(format!("{r:?}--Download->{j:?}").as_str());
 			}
 			false => {
 				g.start_download(r, j)?;
-				info!("{j:?}--Download->{r:?}");
+				Colour::Output.logs_is(format!("{j:?}--Download->{r:?}").as_str());
 				g.end_download()?;
 			}
 		};

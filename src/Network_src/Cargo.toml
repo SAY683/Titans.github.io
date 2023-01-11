@@ -6,14 +6,27 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+tokio = { version = "*", features = ["full"] }#:全域执行async/await>
+futures = "*"#:区域执行async/await>
+async-stream = "*"#:异步迭代>
+async-trait = "*"#:async-trait>
+once_cell = "*"#:|Cell模式全局数据>
+arc-swap = "*"#:原子锁>
+bytes = "*"#:编码>
+serde = { version = "*", features = ["derive"] }#:数据序列>
+serde_json = "*"#:json序列>
+bincode = "*"#:结构编码>
 lazy_static = "*"#:惰性初始>
 anyhow = "*"#:Result兼容处理>
 rayon = "*"#:并行>
+itertools = "*"#:迭代器>
 ssh-rs = "*"#:ssh>
-Install_src = { path = "../LinuxService/src/Install_src" }
-LinuxService = { path = "../LinuxService" }
 hashbrown = { version = "*", features = ["serde", "ahash", "rayon"] }#:|哈希(性能)>
-jsonrpsee = { version = "*", features = ["full"] }#:GRC>
-jsonrpsee-core = { version = "*", features = ["async-channel", "tokio", "futures-util", "server", "parking_lot", "async-client", "client"] }#:GRC通信>
+Install_src = { path = "../LinuxService/src/Install_src" }
+Gui_src = { path = "../LinuxService/src/Gui_src" }
+kanal = "0.1.0-pre7"#:线程通信Bata>
+uuid = { version = "*", features = ["v4"] }#:ID
+#tarpc = { version = "*", features = ["tokio1", "tcp", "serde-transport"] }#:RPC>
+#async-graphql = { version = "*", features = ["tokio", "url", "uuid", "cbor", "hashbrown", "bson"] }#:请求机>
 [lib]#[高可用库]
 path = "./src/main.rs"

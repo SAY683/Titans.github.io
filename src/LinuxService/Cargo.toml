@@ -11,16 +11,19 @@ futures = "*"#:区域执行async/await>
 #async-stream = "*"#:异步迭代>
 async-trait = "*"#:async-trait>
 anyhow = "*"#:Result兼容处理>
-jsonrpsee = { version = "*", features = ["full"] }#:GRC>
-jsonrpsee-core = { version = "*", features = ["async-channel", "tokio", "futures-util", "server", "parking_lot", "async-client", "client"] }#:GRC通信>
+#jsonrpsee = { version = "*", features = ["full"] }#:GRC>
+#jsonrpsee-core = { version = "*", features = ["async-channel", "tokio", "futures-util", "server", "parking_lot", "async-client", "client"] }#:GRC通信>
 lazy_static = "*"#:惰性初始>
 once_cell = "*"#:|Cell模式全局数据>
 arc-swap = "*"#:原子锁>
 Gui_src = { path = "./src/Gui_src" }
 Install_src = { path = "./src/Install_src" }
-serde = { version = "*", features = ["derive"] }#:数据序列>
-serde_json = "*"#:json序列>
-bincode = "*"#:结构编码>
+#serde = { version = "*", features = ["derive"] }#:数据序列>
+#serde_json = "*"#:json序列>
+sysinfo = "*"#:系统信息>
+comfy-table = "*"#:Shll界面>
+#bincode = "*"#:结构编码>
+Network_src = { path = "../Network_src" }
 [lib]#[高可用库]
 path = "./src/main.rs"
 [profile.dev]#[Debug]
