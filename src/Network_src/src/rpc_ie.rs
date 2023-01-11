@@ -43,7 +43,7 @@ pub trait RxServer: RPC<'static> {
         (BufReader::new(e.0), BufWriter::new(e.1))
     }
     ///设置数据流
-    fn set_bitcoin(mut e: String) -> BytesMut {
+    fn set_bitcoin(e: String) -> BytesMut {
         let mut x = BytesMut::with_capacity(1024);
         x.put(e.as_bytes());
         x
@@ -54,7 +54,7 @@ pub trait RxServer: RPC<'static> {
         e.read_buf(&mut x).await?;
         Ok(x)
     }
-    //链接
+    /// rpc链接
     async fn connect_nc(
         future_name: &'static str,
         host: &'static str,
@@ -71,7 +71,7 @@ pub trait RxServer: RPC<'static> {
                 let mut er = <Self as RxServer>::set_bitcoin(serde_json::to_string(u)?);
                 ab.write_all_buf(&mut er).await?;
                 ab.flush().await?;
-                let mut er = <Self as RxServer>::get_bitcoin(&mut ac).await?;
+                let er = <Self as RxServer>::get_bitcoin(&mut ac).await?;
                 etc.run_sync(serde_json::from_str(from_utf8(unsafe {
                     mem::transmute::<&'_ [u8], &'static [u8]>(&er[..])
                 })?)?)
@@ -93,7 +93,7 @@ pub trait RxServer: RPC<'static> {
                 let (mut ad, _) = mc.accept().await?;
                 spawn(async move {
                     let (mut ac, mut ab) = <Self as RxServer>::verify(ad.split());
-                    let mut vb = <Self as RxServer>::get_bitcoin(&mut ac).await?;
+                    let vb = <Self as RxServer>::get_bitcoin(&mut ac).await?;
                     let ApplyFor {
                         subscription,
                         function,
@@ -134,7 +134,9 @@ impl RPC<'static> for Node {
             args: Default::default(),
             function: FutureEx::sync(async {
                 println!("testing");
-                Ok(Args::None)
+                Ok(Args::String(
+                    serde_json::to_string(&Instruction::Backs).unwrap(),
+                ))
             }),
         }]))
     }
